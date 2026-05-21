@@ -71,7 +71,7 @@ The load test was designed to simulate expected normal operating conditions. The
 | :--- | :---: |
 | Number of Threads (Users) | 50 |
 | Ramp-Up Period | 60 seconds |
-| Loop Count | 5 |
+| Loop Count | Infinite |
 | Duration | ~5 minutes |
 | Test Objective | Measure response times, throughput, and error rate under normal load |
 
@@ -81,28 +81,46 @@ The stress test aimed to push the application beyond its normal capacity to iden
 
 | Parameter	| Value |
 | :--- | :---: |
-| Number of Threads (Users)	| Starts at 50, increments to 500 |
+| Number of Threads (Users)	| 500 |
 | Ramp-Up Period	| 120 seconds |
-| Loop Count	| 10 |
+| Loop Count	| Infinite |
 | Duration	| ~20 minutes |
 | Test Objective	| Determine maximum user capacity and observe degradation patterns |
 
-#### 2.3.3 Spike Test - 
-The spike test was designed to simulate sudden, dramatic surges in traffic, such as during a flash sale or viral event.
+#### 2.3.3 Endurance Test - 
+The endurance test was designed to simulate sustained normal-to-peak traffic over an extended period to identify memory leaks, resource fragmentation, and degradation over time.
 
 | Parameter | Value |
 | :--- | :---: |
-| Number of Threads (Users)	| 500 |
-| Ramp-Up Period |1 second for spike|
+| Number of Threads (Users)	| 100 |
+| Ramp-Up Period |60 Seconds |
 | Loop Count | Infinite cycles |
-| Duration | ~10 minutes |
-| Test Objective	| Assess system reaction to instant traffic surges and recovery capability | 
+| Duration | 1 Hour |
+| Test Objective	| Detect memory leaks, resource exhaustion, and performance degradation over prolonged operation. | 
 
 
 ### 2.4 Test Execution
 All tests were executed using JMeter in non-GUI (command-line) mode to maximize performance and resource efficiency. The following command was used for each test
+
+* Load Test <br/>
+
       bash
-      jmeter -n -t blazedemo_test_plan.jmx -l test_results.jtl -e -o ./html_report
+      ./jmeter -n -t /Users/void/Documents/ITT440/Individual\ Assignment/Blazedemotest.jmx -l /Users/void/Documents/ITT440/Individual\    
+       Assignment/LoadTestV3.csv  -e -o /Users/void/Documents/ITT440/Individual\ Assignment/LoadTestV3
+  
+* Stress Test <br/>
+
+      bash
+      ./jmeter -n -t /Users/void/Documents/ITT440/Individual\ Assignment/Blazedemotest.jmx -l /Users/void/Documents/ITT440/Individual\    
+       Assignment/StressTestV3.csv  -e -o /Users/void/Documents/ITT440/Individual\ Assignment/StressTestV3
+  
+* Spike Test <br/>
+
+
+       bash
+      ./jmeter -n -t /Users/void/Documents/ITT440/Individual\ Assignment/Blazedemotest.jmx -l /Users/void/Documents/ITT440/Individual\    
+       Assignment/EnduranceTestV5.csv  -e -o /Users/void/Documents/ITT440/Individual\ Assignment/EnduranceTestV5
+  
 Before each test, the following steps were performed:
 
 * The application (BlazeDemo) was verified to be accessible and responsive.
