@@ -1,4 +1,3 @@
-<div align="center">
 
 ![Grafana k6](k6-logo.png)
 
@@ -6,29 +5,20 @@
 
 ### 🎯 ITT440 Individual Assignment
 
-</div>
-
 | 🛠️ Tool | 💻 Language | 🧪 Tests | ✅ Status |
 |:-------:|:-----------:|:--------:|:---------:|
 | **Grafana k6** | **JavaScript** | Load · Stress · Spike | **All Passed** |
 
-<div align="center">
-
 | 📋 Detail | ℹ️ Information |
-|:----------|:--------------|
+|:---------:|:-------------:|
 | 👤 **Student** | Mariatulkaftiah binti Othman |
 | 🎯 **Target API** | `jsonplaceholder.typicode.com/posts` |
 | 🛠️ **Primary Tool** | Grafana k6 (JavaScript) |
 | 🧪 **Tests** | Load · Stress · Spike |
-| 💻 **OS** | Windows 11 |
-
-</div>
 
 ---
 
 ## 📊 Results at a Glance
-
-<div align="center">
 
 | Test | What it checks | p95 | Throughput | Errors | Result |
 |:----:|:--------------:|:---:|:----------:|:------:|:------:|
@@ -36,24 +26,27 @@
 | 🟠 **Stress** | Heavy (300 users) | `171 ms` | `120 req/s` | `0%` | ✅ Pass |
 | 🔴 **Spike** | Sudden burst | `483 ms` | `120 req/s` | `0%` | ✅ Pass |
 
-</div>
-
-> 💡 **Main finding:** The API was very strong. It handled 300 users with zero failures. The only weakness was **tail latency**, a few requests reached 5 seconds while most stayed under half a second.
+### 💡 Main Findings
+- The API was very strong
+- It handled 300 users with **zero failures**
+- The only weakness was **tail latency**
+- A few requests reached 5 seconds, while most stayed under half a second
 
 ---
 
 ## 📑 Table of Contents
 1. ⚙️ [How It Works](#️-how-it-works)
 2. ❓ [Problem Statement](#-problem-statement)
-3. 💻 [Setup & Installation](#-setup--installation)
-4. 🧪 [Test Types](#-test-types)
-5. 📐 [Metrics Explained](#-metrics-explained)
-6. 📜 [Test Scripts](#-test-scripts)
-7. 📈 [Results & Analysis](#-results--analysis)
-8. 🔍 [Bottlenecks & Recommendations](#-bottlenecks--recommendations)
-9. ✅ [Conclusion](#-conclusion)
-10. 🎥 [Demo Video](#-demo-video)
-11. 📚 [References](#-references)
+3. 💻 [Minimum Requirements](#-minimum-requirements)
+4. 📥 [Installation & How to Run](#-installation--how-to-run)
+5. 🧪 [Test Types](#-test-types)
+6. 📐 [Metrics Explained](#-metrics-explained)
+7. 📜 [Test Scripts](#-test-scripts)
+8. 📈 [Results & Analysis](#-results--analysis)
+9. 🔍 [Bottlenecks & Recommendations](#-bottlenecks--recommendations)
+10. ✅ [Conclusion](#-conclusion)
+11. 🎥 [Demo Video](#-demo-video)
+12. 📚 [References](#-references)
 
 ---
 
@@ -96,21 +89,32 @@ APIs must handle different traffic patterns, from steady use to sudden spikes. T
 
 ---
 
-## 💻 Setup & Installation
+## 💻 Minimum Requirements
 
-**Requirements:** Grafana k6 v2.0.0, any OS (Windows/macOS/Linux), 512 MB RAM, and an internet connection.
+You do not need a powerful computer to run this project. Any normal laptop works. Here is what you need:
 
-**Install on Windows:**
+| Requirement | Minimum | Why it is needed |
+|:-----------:|:-------:|:-----------------|
+| 🛠️ **Grafana k6** | v2.0.0 or newer | The testing tool that sends traffic and measures results |
+| 🧠 **RAM** | 512 MB | k6 is very light, even an old laptop can run it |
+| 🖥️ **Operating System** | Windows 10 / macOS 12 / Ubuntu 20.04 (or newer) | k6 works on all three (I used Windows 11) |
+| 🌐 **Internet** | Required | The tests send real requests to the live API online |
+
+---
+
+## 📥 Installation & How to Run
+
+**Step 1, install k6 on Windows:**
 ```bash
 winget install k6 --source winget
 ```
 
-**Check it works:**
+**Step 2, check it works:**
 ```bash
 k6 version
 ```
 
-**Run the tests:**
+**Step 3, run the three tests:**
 ```bash
 k6 run load-test.js
 k6 run stress-test.js
@@ -213,15 +217,11 @@ export const options = {
 
 > Tests run on Windows 11 using k6 v2.0.0.
 
-<div align="center">
-
 | Test | Avg (ms) | p95 (ms) | Max | Throughput | Errors | Requests |
 |:----:|:--------:|:--------:|:---:|:----------:|:------:|:--------:|
 | 🟢 Load   | `143` | `264` | `727 ms` | `13.22`  | `0%` | `1,610`  |
 | 🟠 Stress | `80`  | `171` | `5.03 s` | `120.35` | `0%` | `36,159` |
 | 🔴 Spike  | `206` | `483` | `3.15 s` | `119.91` | `0%` | `18,003` |
-
-</div>
 
 ### 📋 What Each Test Showed
 
